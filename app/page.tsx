@@ -1,7 +1,8 @@
-import HeroCarousel     from "@/components/home/HeroCarousel";
-import CategoryCards    from "@/components/home/CategoryCards";
-import AboutSection     from "@/components/home/AboutSection";
-import TopDestinations  from "@/components/home/TopDestinations";
+import HeroCarousel    from "@/components/home/HeroCarousel";
+import CategoryCards   from "@/components/home/CategoryCards";
+import AboutSection    from "@/components/home/AboutSection";
+import TopDestinations from "@/components/home/TopDestinations";
+import TasteOfKashmir  from "@/components/home/TasteOfKashmir";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <CategoryCards />
       <AboutSection />
       <TopDestinations />
+      <TasteOfKashmir />
     </>
   );
 }

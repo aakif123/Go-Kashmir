@@ -20,6 +20,7 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [user, setUser] = useState<any>(null);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [fullName, setFullName] = useState<string | null>(null);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const pathname = usePathname();
     const supabase = createClient();
@@ -41,10 +42,11 @@ export default function Navbar() {
             if (user) {
                 const { data: profile } = await supabase
                     .from("profiles")
-                    .select("role")
+                    .select("role, full_name")
                     .eq("id", user.id)
                     .single();
                 setIsAdmin(profile?.role === "admin");
+                setFullName(profile?.full_name ?? null);
             }
         };
 
@@ -57,12 +59,14 @@ export default function Navbar() {
                 if (session?.user) {
                     const { data: profile } = await supabase
                         .from("profiles")
-                        .select("role")
+                        .select("role, full_name")
                         .eq("id", session.user.id)
                         .single();
                     setIsAdmin(profile?.role === "admin");
+                    setFullName(profile?.full_name ?? null);
                 } else {
                     setIsAdmin(false);
+                    setFullName(null);
                 }
             }
         );
@@ -79,9 +83,12 @@ export default function Navbar() {
     const isActive = (href: string) =>
         href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+    const isHome  = pathname === "/";
+    const solidNav = scrolled || !isHome;
+
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${solidNav
                 ? "bg-white shadow-lg"
                 : "bg-transparent"
                 }`}
@@ -96,7 +103,7 @@ export default function Navbar() {
                             <Mountain className="w-5 h-5 text-white" />
                         </div>
                         <span
-                            className={`font-display text-xl font-semibold transition-colors duration-300 ${scrolled ? "text-kashmir-dark" : "text-white"
+                            className={`font-display text-xl font-semibold transition-colors duration-300 ${solidNav ? "text-kashmir-dark" : "text-white"
                                 }`}
                         >
                             Go Kashmir
@@ -111,7 +118,7 @@ export default function Navbar() {
                                 href={link.href}
                                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${isActive(link.href)
                                     ? "bg-kashmir-green text-white"
-                                    : scrolled
+                                    : solidNav
                                         ? "text-kashmir-dark hover:bg-kashmir-green/10 hover:text-kashmir-green"
                                         : "text-white hover:bg-white/20"
                                     }`}
@@ -128,13 +135,13 @@ export default function Navbar() {
                                 <button
                                     onClick={() => setDropdownOpen(!dropdownOpen)}
                                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm
-                              font-medium transition-all duration-200 ${scrolled
+                              font-medium transition-all duration-200 ${solidNav
                                             ? "bg-kashmir-green/10 text-kashmir-green hover:bg-kashmir-green hover:text-white"
                                             : "bg-white/20 text-white hover:bg-white/30"
                                         }`}
                                 >
                                     <User className="w-4 h-4" />
-                                    <span>{user.email?.split("@")[0]}</span>
+                                    <span>{fullName ?? user.email?.split("@")[0]}</span>
                                 </button>
 
                                 {/* Dropdown */}
@@ -189,7 +196,7 @@ export default function Navbar() {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className={`md:hidden p-2 rounded-full transition-colors duration-200 ${scrolled
+                        className={`md:hidden p-2 rounded-full transition-colors duration-200 ${solidNav
                             ? "text-kashmir-dark hover:bg-gray-100"
                             : "text-white hover:bg-white/20"
                             }`}

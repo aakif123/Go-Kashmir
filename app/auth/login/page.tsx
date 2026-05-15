@@ -11,7 +11,7 @@ import { createClient } from "@/lib/supabaseClient";
 import toast, { Toaster } from "react-hot-toast";
 
 const schema = z.object({
-  email:    z.string().email("Please enter a valid email"),
+  email:    z.string().email({ message: "Please enter a valid email" }),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 

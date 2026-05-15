@@ -5,25 +5,25 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    image: "https://images.unsplash.com/photo-1566837945700-30057527ade0?w=1600&q=80",
+    image: "https://plus.unsplash.com/premium_photo-1697730150003-26a1d469adb4?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     title: "Paradise on Earth",
     subtitle: "Kashmir",
     description: "Where mountains touch the sky and valleys bloom with eternal beauty",
   },
   {
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80",
+    image: "https://www.khyberhotels.com/public/uploads/Resort/8113084be503539af749d91961cee9c5.jpg",
     title: "Explore Nature",
     subtitle: "Culture & Adventure",
     description: "Discover the untouched beauty of Dal Lake, Gulmarg and beyond",
   },
   {
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
+    image: "https://plus.unsplash.com/premium_photo-1688645554172-d3aef5f837ce?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     title: "Experience the Magic",
     subtitle: "Of the Himalayas",
     description: "Snow-capped peaks, lush meadows and warm Kashmiri hospitality await",
   },
   {
-    image: "https://images.unsplash.com/photo-1542401886-65d6c61db217?w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1566837500831-838ff7486b28?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     title: "Journey Through",
     subtitle: "Heaven on Earth",
     description: "From the gardens of Srinagar to the slopes of Pahalgam",
@@ -51,7 +51,7 @@ export default function HeroCarousel() {
   }, [next]);
 
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden">
+    <section className="relative h-screen min-h-[600px] overflow-hidden -mt-16 md:-mt-20">
 
       {/* Slides */}
       {slides.map((slide, index) => (

@@ -11,7 +11,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const schema = z.object({
   name:    z.string().min(2, "Name must be at least 2 characters"),
-  email:   z.string().email("Please enter a valid email"),
+  email:   z.string().email({ message: "Please enter a valid email" }),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
@@ -57,7 +57,7 @@ export default function ContactPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/60" />
         <div className="relative z-10 h-full flex flex-col items-center
-                        justify-center text-center px-4 pt-16">
+                        justify-center text-center px-4">
           <p className="text-kashmir-gold uppercase tracking-widest text-sm mb-3">
             Get in Touch
           </p>

@@ -45,12 +45,17 @@ export default function PlaceForm({ onClose, onSuccess, existing }: Props) {
     });
 
   const onSubmit = async (data: FormData) => {
-    const { error } = isEdit
-      ? await supabase.from("destinations").update(data).eq("id", existing!.id)
-      : await supabase.from("destinations").insert([data]);
+    const { data: result, error } = isEdit
+      ? await supabase.from("destinations").update(data).eq("id", existing!.id).select()
+      : await supabase.from("destinations").insert([data]).select();
 
     if (error) {
       toast.error(error.message);
+      return;
+    }
+
+    if (!result || result.length === 0) {
+      toast.error("Action failed. You may not have permission.");
       return;
     }
 

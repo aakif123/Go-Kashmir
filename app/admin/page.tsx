@@ -56,7 +56,7 @@ export default function AdminDashboard() {
       value: stats.messages,
       icon:  MessageSquare,
       color: "bg-amber-50 text-amber-600",
-      href:  "/admin/destinations",
+      href:  "/admin/messages",
     },
     {
       label: "Registered Users",

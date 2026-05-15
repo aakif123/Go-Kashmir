@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   Mountain, LayoutDashboard, MapPin,
-  Hotel, LogOut, ExternalLink
+  Hotel, MessageSquare, LogOut, ExternalLink
 } from "lucide-react";
 import { createClient } from "@/lib/supabaseClient";
 
@@ -12,6 +12,7 @@ const navItems = [
   { href: "/admin",                icon: LayoutDashboard, label: "Dashboard"      },
   { href: "/admin/destinations",   icon: MapPin,          label: "Destinations"   },
   { href: "/admin/accommodations", icon: Hotel,           label: "Accommodations" },
+  { href: "/admin/messages",       icon: MessageSquare,   label: "Messages"       },
 ];
 
 export default function AdminSidebar() {
